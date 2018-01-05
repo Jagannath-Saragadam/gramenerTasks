@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	var data = [0, 1, 2, 'stop', 2, 0, 1, 'stop']
+
+	data.forEach(function(item){
+
+		if(item === 0){
+			data.splice(data.indexOf(item), 1);
+		}
+
+	})
+	console.log(data);
+	document.write(data);
+</script>
+</body>
+</html>
