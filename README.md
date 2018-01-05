@@ -259,3 +259,61 @@ for index, row in census_bihar.iterrows():
 <h2>Question 3: How does the mobile penetration vary in regions (districts or states) with high or low agricultural workers?</h2>
 
 ![mobile_penetration Vs. low_high Agri level](https://github.com/Jagannath-Saragadam/gramenerTasks/blob/master/basic-line%20(1).png)
+
+Link to plot:https://plot.ly/~jagannathsrs/2/agricultural-workers-vs-mobile-penetration/
+
+
+There is no strong correlation between mobile penetration level with low and high agricultural levels, but with keen observation, one can infer that states with high level of agriculture have significantly lower mobile penetration levels. We also observe frequent dips in the mobile penetration level which are mostly north eastern states such as **Tripura,Assam,Meghalaya,Arunachal Pradesh**
+
+<h3>Import required libraries</h3>
+
+```Python
+import pandas as pd
+import statistics as st
+import numpy as np
+import plotly.plotly as py
+import plotly.graph_objs as go
+```
+
+<h3>Clean the data</h3>
+
+```Python
+census=pd.read_table('india-districts-census-2011.csv',sep=',') 
+
+census.rename(columns={'State name':'state_name'},inplace=True)
+census.rename(columns={'District name':'District_name'},inplace=True)
+census_trimmed=census[["state_name","District_name","Workers","Households","Agricultural_Workers","Households_with_Telephone_Mobile_Phone"]]
+census_trimmed=census_trimmed.groupby("state_name",as_index=False).sum()
+```
+
+Read the CSV file, rename ambiguous columns, select required columns from dataFrame and groupby state name.
+
+<h3>Find correlation</h3>
+
+```Python
+census_trimmed['perc_agri']=(census_trimmed['Agricultural_Workers']/census_trimmed['Workers']*100)
+census_trimmed['perc_mobile']=(census_trimmed['Households_with_Telephone_Mobile_Phone']/census_trimmed['Households']*100)
+census_trimmed=census_trimmed.sort_values(['perc_agri'],ascending=False)
+```
+
+Calculate the percentage of agriculture workers and mobile penetration levels.
+
+<h3>Plot</h3>
+
+```Python
+trace = go.Scatter(
+    x = census_trimmed['state_name'],
+    y = census_trimmed['perc_agri'],
+    name= 'Agricultural workers(%)'
+)
+
+trace1 = go.Scatter(
+    x = census_trimmed['state_name'],
+    y = census_trimmed['perc_mobile'],
+    name= 'mobile penetration(%)'
+)
+
+data = [trace,trace1]
+
+py.iplot(data, filename='basic-line')
+```
