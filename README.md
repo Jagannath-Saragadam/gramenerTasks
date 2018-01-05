@@ -11,6 +11,7 @@ Indian government carries out census every decade. This dataset contains informa
 3. How does the mobile penetration vary in regions (districts or states) with high or low agricultural workers?
 
 <h2>Question 1: geographical map of states with low literacy rates</h2>
+
 ![alt text](https://github.com/Jagannath-Saragadam/gramenerTasks/blob/master/Task%201.png)
 
 According to Census a person **aged 7 or above** who can read and write with understanding in any language is called a literate person, and **Literacy Rate** is the ratio of such people to the complete population.
@@ -36,12 +37,16 @@ Plotting a line chat with few other attributes from the Census leads to some ins
 
 **Literacy rate Vs. Households with more than 5 people**
 ![Line plot- Literacy rate Vs. Households with more than 5 people](https://github.com/Jagannath-Saragadam/gramenerTasks/blob/master/Plot%2011.png)
+Link to plot: 
+https://plot.ly/~jagannathsrs/2/literacy-rate-vs-households-with-internet/
 
 
 As the number of households with more than 5 people increase, we can see a clear dip in the literacy rate. This insight can be linked with the assumption that, as the number of people in the household increase, they get financially burdened to educate all of them.
 
 **Literacy rate Vs. Male & Female Literate**
 ![Literacy rate Vs. Male & Female Literate plot](https://github.com/Jagannath-Saragadam/gramenerTasks/blob/master/basic-line.png)
+Link to plot:
+https://plot.ly/~jagannathsrs/2/literacy-rate-male-literate-female-literate/
 
 It can be clearly observed that in states with low literacy rates, Females have the least literacy rate among the gender. This can be linked to gender discriminiation, child marriages.
 
