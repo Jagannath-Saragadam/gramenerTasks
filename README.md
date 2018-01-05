@@ -61,12 +61,14 @@ import plotly.graph_objs as go
 Pandas for manipulating dataFrames, plotly for plotting various graphs.
 
 <h3> Read the CSV file and clean the data</h3>
+
 ```Python
 census=pd.read_table('india-districts-census-2011.csv',sep=',') 
 census.rename(columns={'State name':'state_name'},inplace=True)
 new_columns=['state_name','Population','Literate','Households','Female_Literate','Male_Literate','Household_size_5_persons_Households','Household_size_6_8_persons_Households','Household_size_9_persons_and_above_Households']
 census_trimmed=pd.DataFrame(census[new_columns])
 ```
+
 load the CSV file and trim the columns to the ones needed for this analysis.
 
 <h3>Create new columns for analysis</h3>
@@ -89,6 +91,7 @@ census_trimmed=census_trimmed.groupby('state_name',as_index=False).mean()
 census_trimmed=census_trimmed.sort_values(by='Literacy_Rate',ascending=0)
 census_trimmed.reset_index()
 ```
+
 Remove uncessary columns, groupby state name and arrage in ascending order by literacy rate.
 
 <h3>Creating Geographical map</h3>
@@ -148,6 +151,7 @@ py.iplot(data, filename='basic-line')
 <h2>Question 2: Find out most similar districts in Bihar and Tamil Nadu. Similarity can be based on any of the columns from the data.</h2>
 
 To find out similar districts between Bihar and Tamil Nadu, I've taken each district from Bihar and compared it with every district of Tamil Nadu, found the ratio and allowed a maxium deviation of **+_5%**
+The attribute i've considered here is **Population**
 
 <h3>Import the required Libraries</h3>
 
@@ -182,6 +186,7 @@ for index, row in census_bihar.iterrows():
         if 0.95<(census_bihar.Population[index]/census_tamilNadu.Population[index1])<1.05:
             similar.append({census_bihar.district_name[index]:census_bihar.Population[index],census_tamilNadu.tname[index1]:census_tamilNadu.Population[index1]})
 ````
+
 **Output**
 
 ```
@@ -246,3 +251,11 @@ for index, row in census_bihar.iterrows():
  {'Jamui': 1760405, 'Thoothukkudi': 1750176},
  {'Arwal': 700843, 'The Nilgiris': 735394}]
  ```
+
+<h3>Plot</h3>
+
+![similar dist. plot](https://github.com/Jagannath-Saragadam/gramenerTasks/blob/master/Figure_1.png)
+
+<h2>Question 3: How does the mobile penetration vary in regions (districts or states) with high or low agricultural workers?</h2>
+
+![mobile_penetration Vs. low_high Agri level](https://github.com/Jagannath-Saragadam/gramenerTasks/blob/master/basic-line%20(1).png)
